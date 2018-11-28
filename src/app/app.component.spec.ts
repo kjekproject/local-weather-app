@@ -1,15 +1,19 @@
 import { TestBed, async } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { CurrentWeatherComponent } from './current-weather/current-weather.component';
 import { WeatherService } from './weather/weather.service';
 import { WeatherServiceFake } from './weather/weather.service.fake';
+import { MaterialModule } from './material.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        MaterialModule,
+        NoopAnimationsModule
       ],
       declarations: [
         AppComponent,
@@ -40,6 +44,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('LocalCast Weather');
+    expect(compiled.querySelector('mat-toolbar span').textContent).toContain('LocalCast Weather');
   });
 });
